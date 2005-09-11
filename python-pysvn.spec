@@ -4,13 +4,14 @@
 Summary:	Python SVN Tools
 Name:		python-%{module}
 Version:	1.3.0
-Release:	1
+Release:	2
 License:	Apache Group License
 Group:		Development/Languages/Python
 Source0:	http://pysvn.tigris.org/files/documents/1233/25338/%{module}-%{version}.tar.gz
 # Source0-md5:	f31d99a2fe9078f9b0501f8eb6364e18
 URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
+BuildRequires:	subversion
 BuildRequires:	subversion-devel
 BuildRequires:	python-devel
 %pyrequires_eq	python
