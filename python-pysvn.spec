@@ -2,6 +2,7 @@
 
 %define	module	pysvn
 Summary:	Python SVN Tools
+Summary(pl):	Narzêdzia do SVN w Pythonie
 Name:		python-%{module}
 Version:	1.3.0
 Release:	2
@@ -26,6 +27,16 @@ pysvn Extension Features:
 - Python like interface
 - Good Documentation and examples
 - No need to understand the Subversion C API
+
+%description -l pl
+Cechy pysvn:
+- obs³uguje wszystkie mo¿liwo¶ci klienta svn
+- obs³uguje cechy transakcji svn wymagane do pisania procedur
+  wywo³ywanych przed commitem do svn
+- ³atwy w nauce i u¿yciu
+- pythonowy interfejs
+- dobra dokumentacja i przyk³ady
+- nie trzeba rozumieæ API C do Subversion
 
 %prep
 %setup  -q -n %{module}-%{version}
