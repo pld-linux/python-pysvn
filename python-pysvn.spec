@@ -2,7 +2,7 @@
 
 %define	module	pysvn
 Summary:	Python SVN Tools
-Summary(pl.UTF-8):   Narzędzia do SVN w Pythonie
+Summary(pl.UTF-8):	Narzędzia do SVN w Pythonie
 Name:		python-%{module}
 Version:	1.3.0
 Release:	2
