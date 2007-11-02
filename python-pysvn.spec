@@ -4,14 +4,17 @@
 Summary:	Python SVN Tools
 Summary(pl.UTF-8):	Narzędzia do SVN w Pythonie
 Name:		python-%{module}
-Version:	1.3.0
-Release:	2
+Version:	1.5.2
+Release:	1
 License:	Apache Group License
 Group:		Development/Languages/Python
-Source0:	http://pysvn.tigris.org/files/documents/1233/25338/%{module}-%{version}.tar.gz
-# Source0-md5:	f31d99a2fe9078f9b0501f8eb6364e18
+#Source0:	http://pysvn.tigris.org/files/documents/1233/25338/%{module}-%{version}.tar.gz
+Source0:	http://pysvn.barrys-emacs.org/source_kits/%{module}-%{version}.tar.gz
+# Source0-md5:	2291cbe16cac0a8b2ff17792f7e697d8
+Patch0:		python-%{module}-apr_util.patch
 URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
+BuildRequires:	apr-util-devel
 BuildRequires:	subversion
 BuildRequires:	subversion-devel
 BuildRequires:	python-devel
@@ -40,11 +43,13 @@ Cechy pysvn:
 
 %prep
 %setup  -q -n %{module}-%{version}
+%patch0 -p0
 
 %build
 cd Source
 python ./setup.py configure \
 	--apr-inc-dir="$(apr-1-config --includedir)" \
+	--apr-util-inc-dir="$(apu-1-config --includedir)" \
 	--svn-lib-dir=%{_libdir}
 %{__make} \
 	CC="%{__cc} -c" \
@@ -57,16 +62,20 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{py_sitedir}/pysvn
 
 install Source/pysvn/__init__.py Source/pysvn/*.so $RPM_BUILD_ROOT%{py_sitedir}/pysvn
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client/
+install Examples/Client/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client
 
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
+%py_postclean
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Docs/* Examples/*
+%doc Docs/*
+%{_examplesdir}/*
 %dir %{py_sitedir}/pysvn
 %attr(755,root,root) %{py_sitedir}/pysvn/*.so
 %{py_sitedir}/pysvn/*.py[co]
