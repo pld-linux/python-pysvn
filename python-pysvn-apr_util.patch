@@ -1,0 +1,63 @@
+--- Source/setup.py	2007-07-01 12:30:50.000000000 +0200
++++ Source/setup.py.new	2007-10-23 08:46:23.000000000 +0200
+@@ -55,6 +55,7 @@
+         --enable-debug
+         --pycxx-dir=<dir>
+         --apr-inc-dir=<dir>
++        --apr-util-inc-dir=<dir>
+         --svn-root-dir=<dir>
+         --svn-inc-dir=<dir>
+         --svn-lib-dir=<dir>
+@@ -139,6 +140,8 @@
+         include_dir_list.append( svn_include )
+         # add APR include
+         include_dir_list.append( self.find_apr_inc( argv ) )
++        # add ARP util include
++        include_dir_list.append( self.find_apr_util_inc( argv ) )
+ 
+         # add source dir
+         include_dir_list.append( '.' )
+@@ -642,6 +645,43 @@
+                 last_exception = e
+         raise last_exception
+ 
++    def find_apr_util_inc( self, argv ):
++        last_exception = None
++        for apr_ver in ['apr-util-1', 'apr-util-0']:
++            try:
++                return self.find_dir( argv,
++                    'APR include',
++                    '--apr-util-inc-dir=',
++                    'include/%s' % apr_ver,
++                    [
++                    ],
++                    'apr_xlate.h' )
++            except SetupError:
++                pass
++
++        for apr_ver in ['apr-1', 'apr-0']:
++            try:
++                return self.find_dir( argv,
++                    'APR include',
++                    '--apr-util-inc-dir=',
++                    None,
++                    [
++                        '/opt/local/include/%s' % apr_ver,      # Darwin - darwin ports
++                        '/sw/include/%s' % apr_ver,             # Darwin - fink
++                        '/usr/include/%s' % apr_ver,            # typical Linux
++                        '/usr/local/apr/include/%s' % apr_ver,  # Mac OS X www.metissian.com
++                        '/usr/pkg/include/%s' % apr_ver,        # netbsd
++                        '/usr/include/apache2',                 # alternate Linux
++                        '/usr/include/httpd',                   # alternate Linux
++                        '/usr/include/apr-util',                # alternate PLD Linux
++                        '/usr/local/include/apr0',              # typical *BSD
++                        '/usr/local/include/apache2',           # alternate *BSD
++                    ],
++                    'apr_xlate.h' )
++            except SetupError, e:
++                last_exception = e
++        raise last_exception
++
+     def find_apr_lib( self, argv ):
+         last_exception = None
+         lib_list = [(self.get_lib_name_for_platform( 'libapr-1' ), 'apr-1'),
