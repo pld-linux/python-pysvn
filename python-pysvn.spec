@@ -16,6 +16,7 @@ URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
 BuildRequires:	subversion
 BuildRequires:	subversion-devel
+BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 %pyrequires_eq	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -48,7 +49,6 @@ Cechy pysvn:
 cd Source
 python ./setup.py configure \
 	--apr-inc-dir="$(apr-1-config --includedir)" \
-	--apr-util-inc-dir="$(apu-1-config --includedir)" \
 	--svn-lib-dir=%{_libdir}
 %{__make} \
 	CC="%{__cc} -c" \
