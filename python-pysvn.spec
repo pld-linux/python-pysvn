@@ -14,7 +14,6 @@ Source0:	http://pysvn.barrys-emacs.org/source_kits/%{module}-%{version}.tar.gz
 Patch0:		python-%{module}-apr_util.patch
 URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
-BuildRequires:	apr-util-devel
 BuildRequires:	subversion
 BuildRequires:	subversion-devel
 BuildRequires:	python-devel
