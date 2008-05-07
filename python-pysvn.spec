@@ -18,6 +18,7 @@ BuildRequires:	subversion
 BuildRequires:	subversion-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
+BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -47,7 +48,7 @@ Cechy pysvn:
 
 %build
 cd Source
-python ./setup.py configure \
+%{__python} ./setup.py configure \
 	--apr-inc-dir="$(apr-1-config --includedir)" \
 	--svn-lib-dir=%{_libdir}
 %{__make} \
@@ -61,7 +62,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{py_sitedir}/pysvn
 
 install Source/pysvn/__init__.py Source/pysvn/*.so $RPM_BUILD_ROOT%{py_sitedir}/pysvn
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client/
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client
 install Examples/Client/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client
 
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
@@ -74,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Docs/*
-%{_examplesdir}/*
 %dir %{py_sitedir}/pysvn
 %attr(755,root,root) %{py_sitedir}/pysvn/*.so
 %{py_sitedir}/pysvn/*.py[co]
+%{_examplesdir}/%{name}-%{version}
