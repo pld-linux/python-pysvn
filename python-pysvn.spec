@@ -4,13 +4,13 @@
 Summary:	Python SVN Tools
 Summary(pl.UTF-8):	Narzędzia do SVN w Pythonie
 Name:		python-%{module}
-Version:	1.5.2
+Version:	1.5.3
 Release:	1
 License:	Apache Group License
 Group:		Development/Languages/Python
 #Source0:	http://pysvn.tigris.org/files/documents/1233/25338/%{module}-%{version}.tar.gz
 Source0:	http://pysvn.barrys-emacs.org/source_kits/%{module}-%{version}.tar.gz
-# Source0-md5:	2291cbe16cac0a8b2ff17792f7e697d8
+# Source0-md5:	68ee1b4cbeb4126c12896793d78a07fb
 Patch0:		python-%{module}-apr_util.patch
 URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
