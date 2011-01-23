@@ -6,17 +6,18 @@ Summary(pl.UTF-8):	Narzędzia do SVN w Pythonie
 Name:		python-%{module}
 Version:	1.7.2
 Release:	2
-License:	Apache Group License
+License:	Apache
 Group:		Development/Languages/Python
 Source0:	http://pysvn.barrys-emacs.org/source_kits/%{module}-%{version}.tar.gz
 # Source0-md5:	b557a12bc34f0d6805e259d69b9f38ce
 URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
-BuildRequires:	subversion
-BuildRequires:	subversion-devel
+BuildRequires:	libstdc++-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
+BuildRequires:	subversion
+BuildRequires:	subversion-devel
 %pyrequires_eq	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -52,7 +53,7 @@ cd Source
 	CC="%{__cc} -c" \
 	CCC="%{__cxx} -c $(pkg-config apr-util-1 --cflags)"
 
-%{?with_tests:%{__make} -C ../Tests -f unix.mak PYTHON=%{_bindir}/python}
+%{?with_tests:%{__make} -C ../Tests -f unix.mak PYTHON=%{__python}}
 
 %install
 rm -rf $RPM_BUILD_ROOT
