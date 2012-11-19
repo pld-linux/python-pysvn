@@ -1,0 +1,38 @@
+--- pysvn-1.7.6/Source/setup_configure.py~	2012-02-28 19:53:48.000000000 +0100
++++ pysvn-1.7.6/Source/setup_configure.py	2012-11-19 12:17:41.602482671 +0100
+@@ -1017,7 +1017,7 @@
+                                         '-g  '
+                                         '-no-long-double '
+                                         '-Wall -fPIC -fexceptions -frtti '
+-                                        '-I. -I%(APR_INC)s -I%(SVN_INC)s '
++                                        '-I. -I%(APR_INC)s -I%(APU_INC)s -I%(SVN_INC)s '
+                                         '-D%(DEBUG)s' )
+         self._addVar( 'LDEXE',          '%(CCC)s -g' )
+ 
+@@ -1034,7 +1034,7 @@
+                     '-g',
+                     '-no-long-double',
+                     '-Wall -fPIC -fexceptions -frtti',
+-                    '-I. -I%(APR_INC)s -I%(SVN_INC)s',
++                    '-I. -I%(APR_INC)s -I%(APU_INC)s -I%(SVN_INC)s',
+                     '-DPYCXX_PYTHON_2TO3 -I%(PYCXX)s -I%(PYCXX_SRC)s -I%(PYTHON_INC)s',
+                     '-D%(DEBUG)s',
+                     ]
+@@ -1126,7 +1126,7 @@
+         self._addVar( 'CCCFLAGS',
+                                         '-g  '
+                                         '-Wall -fPIC -fexceptions -frtti '
+-                                        '-I. -I%(APR_INC)s -I%(SVN_INC)s '
++                                        '-I. -I%(APR_INC)s -I%(APU_INC)s -I%(SVN_INC)s '
+                                         '-D%(DEBUG)s' )
+         self._addVar( 'LDEXE',          '%(CCC)s -g' )
+ 
+@@ -1139,7 +1139,7 @@
+ 
+         py_cflags_list = [
+                     '-Wall -fPIC -fexceptions -frtti',
+-                    '-I. -I%(APR_INC)s -I%(SVN_INC)s',
++                    '-I. -I%(APR_INC)s -I%(APU_INC)s -I%(SVN_INC)s',
+                     '-DPYCXX_PYTHON_2TO3 -I%(PYCXX)s -I%(PYCXX_SRC)s -I%(PYTHON_INC)s',
+                     '-D%(DEBUG)s',
+                     ]

@@ -4,14 +4,16 @@
 Summary:	Python SVN Tools
 Summary(pl.UTF-8):	Narzędzia do SVN w Pythonie
 Name:		python-%{module}
-Version:	1.7.2
-Release:	3
+Version:	1.7.6
+Release:	1
 License:	Apache
 Group:		Development/Languages/Python
 Source0:	http://pysvn.barrys-emacs.org/source_kits/%{module}-%{version}.tar.gz
-# Source0-md5:	b557a12bc34f0d6805e259d69b9f38ce
+# Source0-md5:	010a80f0058713209d62e96b20afbde9
+Patch0:		%{name}-apr-util.patch
 URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
+BuildRequires:	apr-util-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
@@ -43,14 +45,17 @@ Cechy pysvn:
 
 %prep
 %setup  -q -n %{module}-%{version}
+%patch0 -p1
 
 %build
 cd Source
 %{__python} ./setup.py configure \
 	--apr-inc-dir="$(apr-1-config --includedir)" \
+	--apu-inc-dir="$(apu-1-config --includedir)" \
 	--svn-lib-dir=%{_libdir}
+
 %{__make} \
-	CC="%{__cc} -c" \
+	CC="%{__cc} -c $(pkg-config apr-util-1 --cflags)" \
 	CCC="%{__cxx} -c $(pkg-config apr-util-1 --cflags)"
 
 %{?with_tests:%{__make} -C ../Tests -f unix.mak PYTHON=%{__python}}
