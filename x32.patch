@@ -1,16 +1,5 @@
 --- pysvn-1.7.6/Source/setup_configure.py~	2015-05-10 15:38:50.000000000 +0200
 +++ pysvn-1.7.6/Source/setup_configure.py	2015-05-10 15:42:08.032391956 +0200
-@@ -977,8 +977,10 @@
-         self._find_paths_svn_lib = [
-                         '/opt/local/lib',                       # Darwin - darwin ports
-                         '/sw/lib',                              # Darwin - Fink
-+                        '/usr/libx32',                           # typical 64bit Linux
-                         '/usr/lib64',                           # typical 64bit Linux
-                         '/usr/lib',                             # typical Linux
-+                        '/usr/local/libx32',                     # typical 64bit Linux
-                         '/usr/local/lib64',                     # typical 64bit Linux
-                         '/usr/local/lib',                       # typical *BSD
-                         '/usr/pkg/lib',                         # netbsd
 @@ -999,8 +1001,10 @@
          self._find_paths_apr_lib = [
                          '/opt/local/lib',                       # Darwin - darwin ports

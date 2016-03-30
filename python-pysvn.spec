@@ -1,16 +1,19 @@
-%bcond_with	tests
+# NOTE
+# - The GUI is packaged in pysvn-workbench.spec
+#
+# Conditional build:
+%bcond_with	tests		# build with tests
 
 %define	module	pysvn
 Summary:	Python SVN Tools
 Summary(pl.UTF-8):	Narzędzia do SVN w Pythonie
 Name:		python-%{module}
-Version:	1.7.6
-Release:	3
+Version:	1.7.10
+Release:	1
 License:	Apache
 Group:		Development/Languages/Python
 Source0:	http://pysvn.barrys-emacs.org/source_kits/%{module}-%{version}.tar.gz
-# Source0-md5:	010a80f0058713209d62e96b20afbde9
-Patch0:		%{name}-apr-util.patch
+# Source0-md5:	bf7527591d5086bd6d01cdc0d09a076e
 Patch1:		x32.patch
 URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
@@ -21,7 +24,6 @@ BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
 BuildRequires:	subversion
 BuildRequires:	subversion-devel
-%pyrequires_eq	python
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -46,7 +48,6 @@ Cechy pysvn:
 
 %prep
 %setup  -q -n %{module}-%{version}
-%patch0 -p1
 %patch1 -p1
 
 %build
@@ -66,9 +67,9 @@ cd Source
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{py_sitedir}/pysvn
 
-install Source/pysvn/__init__.py Source/pysvn/*.so $RPM_BUILD_ROOT%{py_sitedir}/pysvn
+cp -a Source/pysvn/__init__.py Source/pysvn/*.so $RPM_BUILD_ROOT%{py_sitedir}/pysvn
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client
-install Examples/Client/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client
+cp -p Examples/Client/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client
 
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
