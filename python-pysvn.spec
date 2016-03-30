@@ -22,6 +22,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	rpm-pythonprov
+BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	subversion
 BuildRequires:	subversion-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
