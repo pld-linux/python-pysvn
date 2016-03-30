@@ -8,12 +8,12 @@
 Summary:	Python SVN Tools
 Summary(pl.UTF-8):	Narzędzia do SVN w Pythonie
 Name:		python-%{module}
-Version:	1.7.10
+Version:	1.8.0
 Release:	1
 License:	Apache
 Group:		Development/Languages/Python
 Source0:	http://pysvn.barrys-emacs.org/source_kits/%{module}-%{version}.tar.gz
-# Source0-md5:	bf7527591d5086bd6d01cdc0d09a076e
+# Source0-md5:	3999a7680f4d3c4d3bddfc45edf65788
 Patch1:		x32.patch
 URL:		http://pysvn.tigris.org/
 BuildRequires:	apr-devel
@@ -66,8 +66,8 @@ cd Source
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{py_sitedir}/pysvn
-
 cp -a Source/pysvn/__init__.py Source/pysvn/*.so $RPM_BUILD_ROOT%{py_sitedir}/pysvn
+
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client
 cp -p Examples/Client/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}/Client
 
